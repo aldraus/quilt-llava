@@ -6,7 +6,7 @@ We generated spatially grounded visual instruction tuning data from educational 
 [[Paper, Arxiv](https://arxiv.org/abs/2312.04746)] 
 
 
-[Mehmet Saygin Seyfioglu*](https://mehmetsayginseyfioglu.github.io/), [Wisdom Ikezogwo*](https://wisdomikezogwo.github.io/), [Fateme Ghezloo*](https://fghezloo.github.io/), [Ranjay Krishna](https://www.ranjaykrishna.com/index.html), [Linda Shapiro](https://homes.cs.washington.edu/~shapiro/) (*Equal Contribution)
+[Mehmet Saygin Seyfioglu*](https://mehmetsayginseyfioglu.github.io/), [Wisdom Ikezogwo*](https://wisdomikezogwo.github.io/), [Fatemeh Ghezloo*](https://fghezloo.github.io/), [Ranjay Krishna](https://www.ranjaykrishna.com/index.html), [Linda Shapiro](https://homes.cs.washington.edu/~shapiro/) (*Equal Contribution)
 
 
 <p align="center">
