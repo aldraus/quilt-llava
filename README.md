@@ -72,6 +72,7 @@ We generated spatially grounded visual instruction tuning data from educational 
 In case if you want to generate the instruction tuning data from scratch, please see quilt-instruct folder.
 
 
+See quilt-VQA folder for the prompt and helper code to generate the evaluation Quilt-VQA data.
 
 ### Training
 If you want to skip training and access to our checkpoint, etc. 
