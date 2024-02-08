@@ -55,7 +55,7 @@ We generated spatially grounded visual instruction tuning data from educational 
 | Evaluation files | Size |
 | --- | ---: |
 | [Quilt-VQA](https://huggingface.co/datasets/wisdomik/Quilt_VQA) | 	305 MiB |
-| [Quilt-VQA Red Circle](https://huggingface.co/datasets/wisdomik/QuiltVQA_RED) | X MiB |
+| [Quilt-VQA Red Circle](https://huggingface.co/datasets/wisdomik/QuiltVQA_RED) | 95.8 MiB |
 
 | Raw Mouse Cursor Data | Size |
 | --- | ---: |
