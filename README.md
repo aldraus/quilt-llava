@@ -3,7 +3,8 @@
 
 We generated spatially grounded visual instruction tuning data from educational YouTube videos to train large language and vision assistant in histopathology that can localize the prominent medical regions and reason towards diagnosis.
 
-[[Paper, Arxiv](https://arxiv.org/abs/2312.04746)] 
+[[Paper, Arxiv](https://arxiv.org/abs/2312.04746)], [[QUILT-LLAVA HF]](https://huggingface.co/wisdomik/Quilt-Llava-v1.5-7b), [[QUILT-Instruct]](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K), 
+[[QUILT-VQA]](https://huggingface.co/datasets/wisdomik/Quilt_VQA) [[QUILT-VQA-RED]](https://huggingface.co/datasets/wisdomik/QuiltVQA_RED).
 
 
 [Mehmet Saygin Seyfioglu*](https://mehmetsayginseyfioglu.github.io/), [Wisdom Ikezogwo*](https://wisdomikezogwo.github.io/), [Fatemeh Ghezloo*](https://fghezloo.github.io/), [Ranjay Krishna](https://www.ranjaykrishna.com/index.html), [Linda Shapiro](https://homes.cs.washington.edu/~shapiro/) (*Equal Contribution)
