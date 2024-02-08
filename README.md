@@ -71,7 +71,11 @@ We generated spatially grounded visual instruction tuning data from educational 
 ### Data Generation
 In case if you want to generate the instruction tuning data from scratch, please see quilt-instruct folder.
 
-
+<<<<<<< train_eval
+## Install
+=======
+See quilt-VQA folder for the prompt and helper code to generate the evaluation Quilt-VQA data.
+>>>>>>> main
 
 
 If you are using Windows, do *NOT* proceed, see instructions [here](https://github.com/haotian-liu/LLaVA/blob/main/docs/Windows.md).
