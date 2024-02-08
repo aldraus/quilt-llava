@@ -1,29 +1,37 @@
 ## Data
 
-| Data file name | Size |
+
+| Instruction-Tuning data | Size |
 | --- | ---: |
-| [llava_instruct_150k.json](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/blob/main/llava_instruct_150k.json) | 229 MB |
-| [llava_instruct_80k.json](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/blob/main/llava_instruct_80k.json) | 229 MB |
-| [conversation_58k.json](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/blob/main/conversation_58k.json) | 126 MB |
-| [detail_23k.json](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/blob/main/detail_23k.json) | 20.5 MB |
-| [complex_reasoning_77k.json](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/blob/main/complex_reasoning_77k.json) | 79.6 MB |
+| [quilt_instruct_107K](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K/blob/main/quilt_instruct_107k.json) | 189 MiB |
+| [quilt_instruct_ablation_40k](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K/blob/main/quilt_instruct_ablation_40k.json) | 37.4 MB |
+| [quilt_instruct_complex_abductive](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K/blob/main/quilt_instruct_complex_abductive.json) | 43.2 MB |
+| [quilt_instruct_conv_desc](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K/blob/main/quilt_instruct_conv_desc.json) | 32 MB |
+
+
+
+| Evaluation files | Size |
+| --- | ---: |
+| [Quilt-VQA](https://huggingface.co/datasets/wisdomik/Quilt_VQA) | 	X MiB |
+| [Quilt-VQA Red Circle](https://huggingface.co/datasets/wisdomik/QuiltVQA_RED) | X MiB |
+
+| Raw Mouse Cursor Data | Size |
+| --- | ---: |
+| [Cursors](some path) | N MiB |
+
+| Image URLS | Size |
+| --- | ---: |
+| [Images](some path) | N MiB |
 
 ### Pretraining Dataset
-The pretraining dataset used in this release is a subset of CC-3M dataset, filtered with a more balanced concept coverage distribution.  Please see [here](https://huggingface.co/datasets/liuhaotian/LLaVA-CC3M-Pretrain-595K) for a detailed description of the dataset structure and how to download the images.
+The pretraining dataset used in this release is a subset of [QUILT-1M](https://quilt1m.github.io/) dataset, filtered to remove PubMed and Twitter subsets.  Please see [here](hhttps://huggingface.co/datasets/wisdomik/Quilt-LLaVA-Pretrain) for a detailed description of the dataset structure and how to download the images.
 
-If you already have CC-3M dataset on your disk, the image names follow this format: `GCC_train_000000000.jpg`.  You may edit the `image` field correspondingly if necessary.
 
-| Data | Chat File | Meta Data | Size |
-| --- |  --- |  --- | ---: |
-| CC-3M Concept-balanced 595K | [chat.json](https://huggingface.co/datasets/liuhaotian/LLaVA-CC3M-Pretrain-595K/blob/main/chat.json) | [metadata.json](https://huggingface.co/datasets/liuhaotian/LLaVA-CC3M-Pretrain-595K/blob/main/metadata.json) | 211 MB
-| LAION/CC/SBU BLIP-Caption Concept-balanced 558K | [blip_laion_cc_sbu_558k.json](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain/blob/main/blip_laion_cc_sbu_558k.json) | [metadata.json](#) | 181 MB
+| Data | File | Size |
+| --- |  --- | ---: |
+| [QUILT-1M](https://quilt1m.github.io/) 723K subset | [quilt_pretrain.json](https://huggingface.co/datasets/wisdomik/Quilt-LLaVA-Pretrain/blob/main/quilt_pretrain.json) | 262 MB |
 
-**Important notice**: Upon the request from the community, as ~15% images of the original CC-3M dataset are no longer accessible, we upload [`images.zip`](https://huggingface.co/datasets/liuhaotian/LLaVA-CC3M-Pretrain-595K/blob/main/images.zip) for better reproducing our work in research community. It must not be used for any other purposes. The use of these images must comply with the CC-3M license. This may be taken down at any time when requested by the original CC-3M dataset owner or owners of the referenced images.
+It must not be used for any other purposes. The use of these images must comply with the QUILT-1M license.
 
 ### GPT-4 Prompts
-
-We provide our prompts and few-shot samples for GPT-4 queries, to better facilitate research in this domain.  Please check out the [`prompts`](https://github.com/haotian-liu/LLaVA/tree/main/playground/data/prompts) folder for three kinds of questions: conversation, detail description, and complex reasoning.
-
-They are organized in a format of `system_message.txt` for system message, pairs of `abc_caps.txt` for few-shot sample user input, and `abc_conv.txt` for few-shot sample reference output.
-
-Note that you may find them in different format. For example, `conversation` is in `jsonl`, and detail description is answer-only.  The selected format in our preliminary experiments works slightly better than a limited set of alternatives that we tried: `jsonl`, more natural format, answer-only.  If interested, you may try other variants or conduct more careful study in this.  Contributions are welcomed!
+We provide our prompts and few-shot samples for GPT-4 queries, to better facilitate research in this domain.  Please check out the [`evaluation code`](https://github.com/aldraus/quilt-llava/blob/main/llava/eval/quilt_gpt_eval.py) with more details in the paper.

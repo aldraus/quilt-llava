@@ -1,23 +1,21 @@
 # Evaluation
+We evaluate models on a diverse set of 4 benchmarks. To ensure the reproducibility, we evaluate the models with greedy decoding. We do not evaluate using beam search to make the inference process consistent with the chat demo of real-time outputs, maintaining consistency with other LLaVA evaluation setups.
 
-In LLaVA-1.5, we evaluate models on a diverse set of 12 benchmarks. To ensure the reproducibility, we evaluate the models with greedy decoding. We do not evaluate using beam search to make the inference process consistent with the chat demo of real-time outputs.
-
-Currently, we mostly utilize the official toolkit or server for the evaluation.
 
 ## Evaluate on Custom Datasets
 
-You can evaluate LLaVA on your custom datasets by converting your dataset to LLaVA's jsonl format, and evaluate using [`model_vqa.py`](https://github.com/haotian-liu/LLaVA/blob/main/llava/eval/model_vqa.py).
+You can evaluate Quilt-LLaVA on your custom datasets by converting your dataset to LLaVA's jsonl format, and evaluate using [`model_vqa.py`](https://github.com/haotian-liu/LLaVA/blob/main/llava/eval/model_vqa.py).
 
 Below we provide a general guideline for evaluating datasets with some common formats.
 
-1. Short-answer (e.g. VQAv2, MME).
+1. Short-answer (e.g. Quilt-VQA, Quilt-VQA-RED, PVQA).
 
 ```
 <question>
-Answer the question using a single word or phrase.
+Answer the question using a single word (e.g yes/no) or phrase.
 ```
 
-2. Option-only for multiple-choice (e.g. MMBench, SEED-Bench).
+2. Option-only for multiple-choice (e.g. PMC-VQA).
 
 ```
 <question>
@@ -28,115 +26,65 @@ D. <option_4>
 Answer with the option's letter from the given choices directly.
 ```
 
-3. Natural QA (e.g. LLaVA-Bench, MM-Vet).
+3. Natural QA (e.g. Quilt-VQA, Quilt-VQA-RED, PVQA).
 
 No postprocessing is needed.
 
 ## Scripts
 
+**Important notice**: Upon the request from the community, as ~15% images of the original CC-3M dataset are no longer accessible, we upload [`images.zip`](https://huggingface.co/datasets/liuhaotian/LLaVA-CC3M-Pretrain-595K/blob/main/images.zip) for better reproducing our work in research community. It must not be used for any other purposes. The use of these images must comply with the CC-3M license. This may be taken down at any time when requested by the original CC-3M dataset owner or owners of the referenced images.
+
+
 Before preparing task-specific data, **you MUST first download [eval.zip](https://drive.google.com/file/d/1atZSBBrAX54yYpxtVVW33zFvcnaHeFPy/view?usp=sharing)**. It contains custom annotations, scripts, and the prediction files with LLaVA v1.5. Extract to `./playground/data/eval`. This also provides a general structure for all datasets.
 
-### VQAv2
+### QUILT-VQA
 
-1. Download [`test2015`](http://images.cocodataset.org/zips/test2015.zip) and put it under `./playground/data/eval/vqav2`.
-2. Multi-GPU inference.
+1. Download [`quilt_vqa image zip`](https://huggingface.co/datasets/wisdomik/Quilt_VQA/blob/main/quilt_vqa.zip), unzip and put it under `./playground/data/eval/quiltvqa/images`.
+2. Sinlge-GPU inference.
 ```Shell
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash scripts/v1_5/eval/vqav2.sh
-```
-3. Submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/830/my-submission): `./playground/data/eval/vqav2/answers_upload`.
-
-### GQA
-
-1. Download the data following the official instructions [here](https://cs.stanford.edu/people/dorarad/gqa/download.html) and put under `./playground/data/eval/gqa/data`.
-2. Multi-GPU inference.
-```Shell
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash scripts/v1_5/eval/gqa.sh
+CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/quilt_vqa.sh
 ```
 
-### VisWiz
+### QUILT-VQA-RED
 
-1. Download [`test.json`](https://vizwiz.cs.colorado.edu/VizWiz_final/vqa_data/Annotations.zip) and extract [`test.zip`](https://vizwiz.cs.colorado.edu/VizWiz_final/images/test.zip) to `test`. Put them under `./playground/data/eval/vizwiz`.
+1. Download [`red_circle image zip`](https://huggingface.co/datasets/wisdomik/QuiltVQA_RED/blob/main/red_circle.zip), unzip and put it under `./playground/data/eval/quiltvqa/red_circle`.
 2. Single-GPU inference.
 ```Shell
-CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/vizwiz.sh
-```
-3. Submit the results to the [evaluation server](https://eval.ai/web/challenges/challenge-page/1911/my-submission): `./playground/data/eval/vizwiz/answers_upload`.
-
-### ScienceQA
-
-1. Under `./playground/data/eval/scienceqa`, download `images`, `pid_splits.json`, `problems.json` from the `data/scienceqa` folder of the ScienceQA [repo](https://github.com/lupantech/ScienceQA).
-2. Single-GPU inference and evaluate.
-```Shell
-CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/sqa.sh
+CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/quilt_red_vqa.sh
 ```
 
-### TextVQA
+### PMC-VQA
 
-1. Download [`TextVQA_0.5.1_val.json`](https://dl.fbaipublicfiles.com/textvqa/data/TextVQA_0.5.1_val.json) and [images](https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip) and extract to `./playground/data/eval/textvqa`.
-2. Single-GPU inference and evaluate.
-```Shell
-CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/textvqa.sh
+1. Download [`pmcvqa_pathology_subset.csv`](https://huggingface.co/datasets/wisdomik/QuiltVQA_All/resolve/main/pmcvqa_pathology_subset.csv) put it in ./playground/data/eval/pmcvqa/ and then run 
+
+```python
+python llava/scripts/convert_pmcvqa_for_eval.py \ 
+    --src ./playground/data/eval/pmcvqa/pmcvqa_pathology_subset.csv
+    --dst ./playground/data/eval/pmcvqa/
 ```
 
-### POPE
+next extract [`pmcvqa_images.zip`](https://huggingface.co/datasets/wisdomik/QuiltVQA_RED/resolve/main/pmcvqa_images.zip) to `pmcvqa_images`. Put them under `./playground/data/eval/pmcvqa/pmcvqa_images`.
 
-1. Download `coco` from [POPE](https://github.com/AoiDragon/POPE/tree/e3e39262c85a6a83f26cf5094022a782cb0df58d/output/coco) and put under `./playground/data/eval/pope`.
-2. Single-GPU inference and evaluate.
-```Shell
-CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/pope.sh
-```
 
-### MME
-
-1. Download the data following the official instructions [here](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation).
-2. Downloaded images to `MME_Benchmark_release_version`.
-3. put the official `eval_tool` and `MME_Benchmark_release_version` under `./playground/data/eval/MME`.
-4. Single-GPU inference and evaluate.
-```Shell
-CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/mme.sh
-```
-
-### MMBench
-
-1. Download [`mmbench_dev_20230712.tsv`](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_20230712.tsv) and put under `./playground/data/eval/mmbench`.
 2. Single-GPU inference.
 ```Shell
-CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/mmbench.sh
+CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/pmcvqa.sh
 ```
-3. Submit the results to the [evaluation server](https://opencompass.org.cn/leaderboard-multimodal): `./playground/data/eval/mmbench/answers_upload/mmbench_dev_20230712`.
 
-### MMBench-CN
+### PVQA
 
-1. Download [`mmbench_dev_cn_20231003.tsv`](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv) and put under `./playground/data/eval/mmbench`.
-2. Single-GPU inference.
-```Shell
-CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/mmbench_cn.sh
+https://drive.google.com/file/d/12WMDWqagP5SXleO_NGB83PlzIsf4zvBc/view?usp=drive_link
+
+1. Download [`pvqa.zip`](https://drive.google.com/file/d/12WMDWqagP5SXleO_NGB83PlzIsf4zvBc/view?usp=drive_link), extract it and put the test set [`pvqa/qas/test/test_qa.pkl`](pvqa/qas/test/test_qa.pkl) into ./playground/data/eval/pvqa/ then run 
+
+```python
+python llava/scripts/convert_pvqa_for_eval.py \ 
+    --src ./playground/data/eval/pvqa/test_qa.pkl
+    --dst ./playground/data/eval/pvqa/
 ```
-3. Submit the results to the evaluation server: `./playground/data/eval/mmbench/answers_upload/mmbench_dev_cn_20231003`.
 
-### SEED-Bench
 
-1. Following the official [instructions](https://github.com/AILab-CVC/SEED-Bench/blob/main/DATASET.md) to download the images and the videos. Put images under `./playground/data/eval/seed_bench/SEED-Bench-image`.
-2. Extract the video frame in the middle from the downloaded videos, and put them under `./playground/data/eval/seed_bench/SEED-Bench-video-image`. We provide our script `extract_video_frames.py` modified from the official one.
-3. Multiple-GPU inference and evaluate.
-```Shell
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash scripts/v1_5/eval/seed.sh
-```
-4. Optionally, submit the results to the leaderboard: `./playground/data/eval/seed_bench/answers_upload` using the official jupyter notebook.
-
-### LLaVA-Bench-in-the-Wild
-
-1. Extract contents of [`llava-bench-in-the-wild`](https://huggingface.co/datasets/liuhaotian/llava-bench-in-the-wild) to `./playground/data/eval/llava-bench-in-the-wild`.
 2. Single-GPU inference and evaluate.
 ```Shell
-CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/llavabench.sh
+CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/pvqa.sh
 ```
-
-### MM-Vet
-
-1. Extract [`mm-vet.zip`](https://github.com/yuweihao/MM-Vet/releases/download/v1/mm-vet.zip) to `./playground/data/eval/mmvet`.
-2. Single-GPU inference.
-```Shell
-CUDA_VISIBLE_DEVICES=0 bash scripts/v1_5/eval/mmvet.sh
-```
-3. Evaluate the predictions in `./playground/data/eval/mmvet/results` using the official jupyter notebook.

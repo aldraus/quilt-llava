@@ -30,7 +30,6 @@ def load_jsonl(path):
     return data 
 
 def evaluate(gt, pred, quilt=False, anchor=None):    
-    closed_scores = collections.defaultdict(list)
     closed_scores2 = collections.defaultdict(list)
     bleu_scores = collections.defaultdict(list)
     exact_scores = collections.defaultdict(list)
@@ -76,24 +75,10 @@ def evaluate(gt, pred, quilt=False, anchor=None):
 
         elif gt_item['answer_type'] == 'CLOSED':
             # for close-ended question (Yes/No)
-            closed_scores['q_id'].append(pred_item['question_id'])
             closed_scores2['q_id'].append(pred_item['question_id'])
 
             if quilt:
                 gt_value = gt_item['yes_no_answer'].lower()
-            
-            if 'yes' in pred_value.split() or 'no' in pred_value.split():  
-                assert gt_value in ['yes', 'no'], f"assert gt_value in : {pred_item['question_id'], gt_value}"
-                if gt_value in pred_value.split():
-                    if pred_item['question_id'] == 17:
-                        print(gt_value in pred_value.split())
-                    closed_scores['hit'].append(1)
-                else:
-                    closed_scores['hit'].append(0)
-            else:
-                print('##########')
-                print(gt_value, pred_value)
-                closed_scores['hit'].append(0)
 
             assert gt_value in ['yes', 'no'], f"assert gt_value in : {pred_item['question_id'], gt_value}"
             answer = gt_value
@@ -117,7 +102,6 @@ def evaluate(gt, pred, quilt=False, anchor=None):
     f1_score = sum(f1_scores['f1']) / len(f1_scores['f1'])
     precision = sum(f1_scores['precision']) / len(f1_scores['precision'])
     recall = sum(f1_scores['recall']) / len(f1_scores['recall'])
-    closed_score = sum(closed_scores['hit']) / len(closed_scores['hit']) if len(closed_scores['hit']) != 0 else 0.0
     closed_score2 = sum(closed_scores2['hit']) / len(closed_scores2['hit']) if len(closed_scores2['hit']) != 0 else 0.0
 
     return tabulate(
@@ -126,8 +110,7 @@ def evaluate(gt, pred, quilt=False, anchor=None):
             ['f1 score', f1_score*100], 
             ['precision', precision*100], 
             ['recall', recall*100], 
-            ['yes/no accuracy', closed_score*100],
-            ['2 yes/no accuracy', closed_score2*100]
+            ['yes/no accuracy', closed_score2*100]
         ], 
         headers=['Metric', 'Performance']
     )
