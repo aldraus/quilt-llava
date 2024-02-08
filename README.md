@@ -6,7 +6,7 @@ We generated spatially grounded visual instruction tuning data from educational 
 [[Paper, Arxiv](https://arxiv.org/abs/2312.04746)] 
 
 
-[Mehmet Saygin Seyfioglu*](https://mehmetsayginseyfioglu.github.io/), [Wisdom Ikezogwo*](https://wisdomikezogwo.github.io/), [Fateme Ghezloo*](https://fghezloo.github.io/), [Ranjay Krishna](https://www.ranjaykrishna.com/index.html), [Linda Shapiro](https://homes.cs.washington.edu/~shapiro/) (*Equal Contribution)
+[Mehmet Saygin Seyfioglu*](https://mehmetsayginseyfioglu.github.io/), [Wisdom Ikezogwo*](https://wisdomikezogwo.github.io/), [Fatemeh Ghezloo*](https://fghezloo.github.io/), [Ranjay Krishna](https://www.ranjaykrishna.com/index.html), [Linda Shapiro](https://homes.cs.washington.edu/~shapiro/) (*Equal Contribution)
 
 
 <p align="center">
@@ -72,7 +72,7 @@ We generated spatially grounded visual instruction tuning data from educational 
 In case if you want to generate the instruction tuning data from scratch, please see quilt-instruct folder.
 
 
-## Install
+
 
 If you are using Windows, do *NOT* proceed, see instructions [here](https://github.com/haotian-liu/LLaVA/blob/main/docs/Windows.md).
 
