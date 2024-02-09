@@ -50,7 +50,7 @@ We generated spatially grounded visual instruction tuning data from educational 
 ### Data Download
 | Instruction-Tuning data | Size |
 | --- | ---: |
-| [Quilt-Instruct](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K) | X MiB |
+| [Quilt-Instruct](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K) | 189 MiB |
 
 | Evaluation files | Size |
 | --- | ---: |
