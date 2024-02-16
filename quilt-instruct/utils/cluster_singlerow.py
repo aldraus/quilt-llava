@@ -286,7 +286,7 @@ if __name__ == "__main__":
     parser.add_argument('--max_normalized_bbox_area', type=float, default=0.7, help='Maximum Normalized BBox Area which is used to remove clusters')
     args = parser.parse_args()
     args_dict = vars(args)
-    combined_df = pd.read_parquet('roi_data_similarmerged_facecorrected_tracesfixed_textpadded_asrcorrected_final.parquet')
+    combined_df = pd.read_parquet('cursor.parquet')
     combined_df['clustered_whole_sentences'] = combined_df.apply(lambda row: main(row, **args_dict), axis=1)
-    combined_df.to_parquet('roi_data_similarmerged_facecorrected_tracesfixed_textpadded_asrcorrected_final_clustersadded.parquet')
+    combined_df.to_parquet('cursor.parquet')
     
