@@ -15,16 +15,16 @@ If you need to cluster the raw cursors, you can run quilt-llava/quilt-instruct/u
 To generate Quilt-Instruct, you should use the "clustered_whole_sentences" column. To run it for independent prompts of conversations and detailed descriptions please run:
 
 ```Shell
-TIKTOKEN_CACHE_DIR="" python pipeline_prompts_eval.py --prompt_type conversation
+TIKTOKEN_CACHE_DIR="" python pipeline_prompts.py --prompt_type conversation
 
-TIKTOKEN_CACHE_DIR="" python pipeline_prompts_eval.py --prompt_type detailed_description
+TIKTOKEN_CACHE_DIR="" python pipeline_prompts.py --prompt_type detailed_description
 ```
 
-To run it for complex reasoning and iterative abductive reasoning you need Diagnosis and Supporting Facts extracted from the whole videos, which can be found in diagnosis_and_clues.parquet file. Please run
+To run it for complex reasoning and iterative abductive reasoning you need Diagnosis and Supporting Facts extracted from the whole videos, which can be found in diagnosis_and_clues.parquet file. Please first download it then run
 
 
 ```Shell
-TIKTOKEN_CACHE_DIR="" python 2gpts_pipeline.py --prompt_type iterative_abduction
+TIKTOKEN_CACHE_DIR="" python pipeline_prompts.py --prompt_type iterative_abduction
 
-TIKTOKEN_CACHE_DIR="" python 2gpts_pipeline.py --prompt_type complex_reasoning
+TIKTOKEN_CACHE_DIR="" python pipeline_prompts.py --prompt_type complex_reasoning
 ```
