@@ -15,7 +15,7 @@ openai.api_base = "https://gpt-4-proper.openai.azure.com/"
 openai.api_version = "2023-07-01-preview"
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-sys_msg = """You are a senior pathologist at the Mayo Clinic. You are given a text where a pathologist is describing a histopathology image.
+sys_msg = """You are a senior pathologist. You are given a text where a pathologist is describing a histopathology image.
 Generate well-defined question/answer pairs from these sentenses.
 Consider the following requirements to generate questions and answers:
 - Only generate questions about information being seen in the image.
@@ -104,7 +104,7 @@ def main(eval_df, sys_msg, gpt_model="gpt4", temp=0, max_tokens=500, logger=None
 
 if __name__ == "__main__":
     
-    log_file_name = "/projects/brain1/fatemeh/pathQA/data/errors/gpt_failures_eval_QA.log" 
+    log_file_name = "./data/errors/gpt_failures_eval_QA.log" 
     logging.basicConfig(filename=log_file_name, level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
     logger = logging.getLogger()
     ch = logging.StreamHandler()
@@ -112,9 +112,9 @@ if __name__ == "__main__":
     ch.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
     logger.addHandler(ch)
 
-    eval_df = pd.read_json('/projects/brain1/fatemeh/pathQA/data/eval_set_data.json')
+    eval_df = pd.read_json('./data/eval_set_data.json')
 
-    save_path = "/projects/brain1/fatemeh/pathQA/data/eval_qa.json"
+    save_path = "./data/eval_qa.json"
 
 
     main(eval_df, sys_msg, gpt_model="gpt4", temp=0, max_tokens=500, logger=logger, save_path=save_path)

@@ -42,7 +42,7 @@ We generated spatially grounded visual instruction tuning data from educational 
 
 ## Contents
 - [Data Download](#data-download)
-- [Data Generation](#Data Generation)
+- [Data Generation](#data-generation)
 - [Training](#training)
 - [Evaluation](#evaluation)
 
@@ -57,14 +57,13 @@ We generated spatially grounded visual instruction tuning data from educational 
 | [Quilt-VQA](https://huggingface.co/datasets/wisdomik/Quilt_VQA) | 	305 MiB |
 | [Quilt-VQA Red Circle](https://huggingface.co/datasets/wisdomik/QuiltVQA_RED) | 95.8 MiB |
 
-| Raw Mouse Cursor Data | Size |
-| --- | ---: |
-| [Cursors](some path) | N MiB |
+| Raw Mouse Cursor Data | Filename | Size |
+| --- | --- |  ---: |
+| [Cursors](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K/blob/main/cursor.parquet) |  cursor.parquet | 333 MiB |
 
-| Image URLS | Size |
-| --- | ---: |
-| [Images](some path) | N MiB |
-
+| Image URLS | Filename | Size |
+| --- | --- | ---: |
+| [Images (Please click request time-limited access and sign a quick Data Use Agreement (DUA))](https://forms.gle/TKohQ7zLwYfFn8qRA) | quilt_instruct.zip | 25 GiB |
 
 
 
@@ -72,12 +71,10 @@ We generated spatially grounded visual instruction tuning data from educational 
 ### Data Generation
 In case you want to generate the instruction tuning data from scratch, please see the quilt-instruct folder.
 
+See quilt-VQA folder for the prompt and helper code to generate the evaluation Quilt-VQA data.
+
 
 ## Install
-=======
-See quilt-VQA folder for the prompt and helper code to generate the evaluation Quilt-VQA data.
->>>>>>> main
-
 
 If you are using Windows, do *NOT* proceed, see instructions [here](https://github.com/haotian-liu/LLaVA/blob/main/docs/Windows.md).
 
@@ -250,6 +247,8 @@ If you find LLaVA useful for your research and applications, please cite using t
 - [LLaVA-Med: Training a Large Language-and-Vision Assistant for Biomedicine in One Day](https://github.com/microsoft/LLaVA-Med)
 
 
-[![Code and Data License](https://img.shields.io/badge/Data%20License-CC%20By%20NC%204.0-red.svg)](https://creativecommons.org/licenses/by-nc/4.0/deed.en)
-**Usage and License Notices**: The data, code, and model checkpoints are intended and licensed for research use only. They are also subject to additional restrictions dictated by the Terms of Use: LLaMA, Vicuna and GPT-4 respectively. The data is made available under CC BY NC 4.0. The data, code, and model checkpoints may be used for non-commercial purposes and any models trained using the dataset should be used only for research purposes. It is expressly prohibited for models trained on this data to be used in clinical care or for any clinical decision making purposes.
+[![Code License](https://img.shields.io/badge/Model%20License-CC%20By%20NC%203.0-red.svg)](https://creativecommons.org/licenses/by-nc/3.0/us/deed.en)
+[![Code License](https://img.shields.io/badge/Data%20License-CC%20By%20NC%20ND%203.0%20(w/%20DUA)-red.svg)](https://en.wikipedia.org/wiki/MIT_License)
+[![Code License](https://img.shields.io/badge/Code%20License-MIT-red.svg)](https://en.wikipedia.org/wiki/MIT_License)
+**Usage and License Notices**: The data, code, and model checkpoints are intended and licensed for research use only. They are also subject to additional restrictions dictated by the Terms of Use: QUILT-1M, LLaMA, Vicuna and GPT-4 respectively. The model is made available under CC BY NC 3.0  licence and the data, code under CC BY NC ND 3.0 with additional Data Use Agreement (DUA). The data, code, and model checkpoints may be used for non-commercial purposes and any models trained using the dataset should be used only for research purposes. It is expressly prohibited for models trained on this data to be used in clinical care or for any clinical decision making purposes.
 

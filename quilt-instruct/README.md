@@ -5,8 +5,8 @@ If you want to generate Quilt-Instruct yourself, please first download the follo
 ### Data Download
 | Cursor and Diagnosis | Size |
 | --- | ---: |
-| [Cursors](https://huggingface.co/datasets/wisdomik/quilt-cursor) | 	333 MiB |
-| [Diagnosis and Supporting Facts](https://huggingface.co/datasets/wisdomik/quilt-diagnosis) | 1 MiB |
+| [Cursors](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K/blob/main/cursor.parquet) | 	333 MiB |
+| [Diagnosis and Supporting Facts](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K/blob/main/diagnosis_and_clues.parquet) | 1 MiB |
 
 The cursor file includes raw cursor positions (in the "cursor" column) and clustered cursors (found in the "clustered_whole_sentences" column). It also contains additional metadata, such as whether the caption includes a diagnosis, and if there's a bounding box, among other information.
 

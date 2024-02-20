@@ -12,16 +12,17 @@
 
 | Evaluation files | Size |
 | --- | ---: |
-| [Quilt-VQA](https://huggingface.co/datasets/wisdomik/Quilt_VQA) | 	X MiB |
-| [Quilt-VQA Red Circle](https://huggingface.co/datasets/wisdomik/QuiltVQA_RED) | X MiB |
+| [Quilt-VQA](https://huggingface.co/datasets/wisdomik/Quilt_VQA) | 	305 MiB |
+| [Quilt-VQA Red Circle](https://huggingface.co/datasets/wisdomik/QuiltVQA_RED) | 95.8 MiB |
 
-| Raw Mouse Cursor Data | Size |
-| --- | ---: |
-| [Cursors](some path) | N MiB |
+| Raw Mouse Cursor Data | Filename | Size |
+| --- | --- |  ---: |
+| [Cursors](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K/blob/main/cursor.parquet) |  cursor.parquet | 333 MiB |
+| [Diagnosis and Supporting Facts](https://huggingface.co/datasets/wisdomik/QUILT-LLaVA-Instruct-107K/blob/main/diagnosis_and_clues.parquet) | 1 MiB |
 
-| Image URLS | Size |
-| --- | ---: |
-| [Images](some path) | N MiB |
+| Image URLS | Filename | Size |
+| --- | --- | ---: |
+| [Images (please request time-limited access through this form)](https://forms.gle/TKohQ7zLwYfFn8qRA) | quilt_instruct.zip | 25 GiB |
 
 ### Pretraining Dataset
 The pretraining dataset used in this release is a subset of [QUILT-1M](https://quilt1m.github.io/) dataset, filtered to remove PubMed and Twitter subsets.  Please see [here](hhttps://huggingface.co/datasets/wisdomik/Quilt-LLaVA-Pretrain) for a detailed description of the dataset structure and how to download the images.
