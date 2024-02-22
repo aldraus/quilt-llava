@@ -58,7 +58,7 @@ def main(args):
         except EOFError:
             img_p = ""
 
-        if "http:" in img_p:
+        if "http" in img_p:
             img_p = img_p.strip()
         else:
             assert os.path.exists(img_p), "image path does not exist"
