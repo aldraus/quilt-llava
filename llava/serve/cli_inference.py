@@ -54,11 +54,14 @@ def main(args):
             roles = conv.roles
 
         try:
-            img_p = input(f"{roles[0]}: put in path to image file")
+            img_p = input(f"{roles[0]} put in path to image file: ")
         except EOFError:
             img_p = ""
-        
-        assert os.path.exists(img_p), "image path does not exist"
+
+        if "http:" in img_p:
+            img_p = img_p.strip()
+        else:
+            assert os.path.exists(img_p), "image path does not exist"
 
         image = load_image(img_p)
         # Similar operation in model_worker.py
