@@ -97,30 +97,26 @@ pip install -e .
 pip install -e ".[train]"
 pip install flash-attn --no-build-isolation
 ```
-
 ### CLI Inference
 
-Chat about images using LLaVA without the need of Gradio interface. It also supports multiple GPUs, 4-bit and 8-bit quantized inference. With 4-bit quantization, for our LLaVA-1.5-7B, it uses less than 8GB VRAM on a single GPU.
+Chat about images using LLaVA without the need of Gradio interface. It also supports multiple GPUs, 4-bit and 8-bit quantized inference. With 4-bit quantization, for our LLaVA-1.5-7B, it uses less than 8GB VRAM on a single GPU. [Ignore LlavaLlamaForCausalLM Initialization warnings for the vision tower](https://github.com/haotian-liu/LLaVA/issues/672).
+
 
 ```Shell
 python -m llava.serve.cli \
     --model-path wisdomik/Quilt-Llava-v1.5-7b \
-    
-    --image-file "https://wisdomikezogwo.github.io/images/eval_example_2_.jpg" \
+    --image-file "https://wisdomikezogwo.github.io/images/eval_example_3_.jpg" \
     --load-4bit
 ```
-python -m llava.serve.cli \
-    --model-path /gscratch/krishna/wisdomik/QuiltLLaVA/checkpoints/llava-v1.5-7b-p-3eps \
-    --image-file "https://wisdomikezogwo.github.io/images/eval_example_2_.jpg" \
-    --load-4bit
 
+For inference on multiple images in a single run, use `cli_inference` following the user prompt:
+```Shell
 python -m llava.serve.cli_inference \
-    --model-path /gscratch/krishna/wisdomik/QuiltLLaVA/checkpoints/llava-v1.5-7b-p-3eps
-
+    --model-path wisdomik/Quilt-Llava-v1.5-7b \
     --load-8bit
-    --image-file "https://wisdomikezogwo.github.io/images/eval_example_2_.jpg" \
+```
 
-<img src="images/demo_cli.gif" width="70%">
+<img src="images/demo.gif" width="70%">
 
 
 ## Train
