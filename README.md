@@ -1,4 +1,4 @@
-# Quilt-LLaVA: Visual Instruction Tuning by Extracting Localized Narratives from Open-Source Histopathology Videos
+# Quilt-LLaVA: Visual Instruction Tuning by Extracting Localized Narratives from Open-Source Histopathology Videos (CVPR24)
 
 
 We generated spatially grounded visual instruction tuning data from educational YouTube videos to train large language and vision assistant in histopathology that can localize the prominent medical regions and reason towards diagnosis.
